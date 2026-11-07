@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "fb-1794081351835",
+    "createdAt": "2026-11-07T19:55:51.835Z",
+    "tipo": "aporte_asistente_ronda",
+    "autor": "Cata Ortiz",
+    "jid": "223669196464233",
+    "rondaFacilitador": "Pedro Labbé",
+    "grupoRegular": "Ronda regular de Pedro Labbé (Martes 20:00 hrs, Domo La Reina)",
+    "comentario": "Asistente a la ronda de Pedro Labbé. Aporta información para nutrir la plataforma."
+  }
+]
