@@ -155,7 +155,8 @@
     "extensiones": "Proyecto Minotauro, Biodanza en Organizaciones",
     "estado": "completado",
     "createdAt": "2026-11-06T21:40:00.000Z",
-    "updatedAt": "2026-11-06T21:40:00.000Z"
+    "updatedAt": "2026-11-06T21:40:00.000Z",
+    "foto": "./assets/juan_francisco_marta.jpg"
   },
   "claudia_moena": {
     "jid": "claudia_moena@biodanza.org",
