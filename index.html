@@ -375,14 +375,21 @@
             </div>
           </div>
 
-          <!-- Footer con botón WhatsApp de Inscripción -->
-          <div class="px-5 py-3.5 bg-stone-50/80 border-t border-stone-100 flex items-center justify-between text-xs">
+          <!-- Footer con botón WhatsApp de Inscripción y Enlace -->
+          <div class="px-5 py-3.5 bg-stone-50/80 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2 text-xs">
             <span class="text-[11px] text-stone-400">Grupo: ${t.origenGrupo || 'Biodanza'}</span>
-            ${t.telefono ? `
-              <a href="https://wa.me/${t.telefono.replace(/[^0-9]/g, '')}?text=Hola%20${encodeURIComponent(t.facilitador || '')},%20vi%20la%20publicaci%C3%B3n%20de%20tu%20taller%20'${encodeURIComponent(t.titulo)}'%20en%20Plataforma%20Biodanza%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20e%20inscribirme." target="_blank" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3.5 py-1.5 rounded-xl transition-colors shadow-xs">
-                <span>💬 Inscribirme</span>
-              </a>
-            ` : '<span class="text-stone-400 text-xs">Ver contacto en grupo</span>'}
+            <div class="flex items-center gap-2">
+              ${(t.enlace || (t.descripcion && t.descripcion.match(/https?:\/\/[^\s]+/))) ? `
+                <a href="${t.enlace || t.descripcion.match(/https?:\/\/[^\s]+/)[0]}" target="_blank" class="inline-flex items-center gap-1 bg-stone-100 hover:bg-stone-200 text-stone-700 px-2.5 py-1.5 rounded-xl font-semibold transition-colors">
+                  <span>🔗 Ver enlace / Reel</span>
+                </a>
+              ` : ''}
+              ${t.telefono ? `
+                <a href="https://wa.me/${t.telefono.replace(/[^0-9]/g, '')}?text=Hola%20${encodeURIComponent(t.facilitador || '')},%20vi%20la%20publicaci%C3%B3n%20de%20tu%20taller%20'${encodeURIComponent(t.titulo)}'%20en%20Plataforma%20Biodanza%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20e%20inscribirme." target="_blank" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3.5 py-1.5 rounded-xl transition-colors shadow-xs">
+                  <span>💬 Inscribirme</span>
+                </a>
+              ` : ''}
+            </div>
           </div>
         `;
 
