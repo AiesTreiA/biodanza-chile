@@ -107,7 +107,7 @@
     
     <!-- Filtros de Búsqueda Avanzados -->
     <div class="bg-white rounded-2xl shadow-sm border border-stone-200/80 p-5 mb-6">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <div>
           <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Buscar Facilitador / Comuna</label>
           <input type="text" id="search-input" oninput="filterBiodanza()" placeholder="Pedro, La Reina, Santiago..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
@@ -132,6 +132,14 @@
             <option value="niño">Niños / Familias</option>
             <option value="mayor">Adulto Mayor</option>
             <option value="organizacion">Organizaciones</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Estado de Grupo</label>
+          <select id="filter-estado-grupo" onchange="filterBiodanza()" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
+            <option value="">Todos los facilitadores</option>
+            <option value="con-grupo">Con grupo regular activo</option>
+            <option value="sin-grupo">Talleres puntuales / Sin grupo regular</option>
           </select>
         </div>
         <div>
@@ -401,15 +409,25 @@
       const query = (document.getElementById('search-input').value || '').toLowerCase();
       const rol = (document.getElementById('filter-rol').value || '').toLowerCase();
       const publico = (document.getElementById('filter-publico').value || '').toLowerCase();
+      const estadoGrupo = (document.getElementById('filter-estado-grupo').value || '');
       const ext = (document.getElementById('filter-extension').value || '').toLowerCase();
 
       const filtered = allFacilitadores.filter(f => {
-        const textBlob = `${f.nombre} ${f.formacion} ${f.grupoRegular} ${f.publicos} ${f.extensiones} ${f.comuna || ''} ${f.ciudad || ''}`.toLowerCase();
+        const textBlob = `${f.nombre} ${f.formacion} ${f.grupoRegular || ''} ${f.publicos || ''} ${f.extensiones || ''} ${f.comuna || ''} ${f.ciudad || ''}`.toLowerCase();
         const matchesQuery = !query || textBlob.includes(query);
         const matchesRol = !rol || (f.formacion && f.formacion.toLowerCase().includes(rol));
         const matchesPublico = !publico || (f.publicos && f.publicos.toLowerCase().includes(publico));
         const matchesExt = !ext || (f.extensiones && f.extensiones.toLowerCase().includes(ext));
-        return matchesQuery && matchesRol && matchesPublico && matchesExt;
+        
+        let matchesEstadoGrupo = true;
+        const hasRegular = Boolean(f.grupoRegular && !f.grupoRegular.toLowerCase().includes('sin grupo') && !f.grupoRegular.toLowerCase().includes('no tengo') && f.grupoRegular.trim().length > 3);
+        if (estadoGrupo === 'con-grupo') {
+          matchesEstadoGrupo = hasRegular;
+        } else if (estadoGrupo === 'sin-grupo') {
+          matchesEstadoGrupo = !hasRegular;
+        }
+
+        return matchesQuery && matchesRol && matchesPublico && matchesExt && matchesEstadoGrupo;
       });
 
       renderFacilitadores(filtered);
@@ -512,7 +530,14 @@
                     <p class="text-xs leading-relaxed text-stone-700 font-medium">${item.grupoRegular}</p>
                     ${item.direccion ? `<p class="text-[11px] text-stone-500 mt-1">Dirección: ${item.direccion}</p>` : ''}
                   </div>
-                ` : ''}
+                ` : `
+                  <div class="bg-stone-50 rounded-xl p-3 border border-stone-200/80">
+                    <div class="font-semibold text-stone-600 text-xs uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                      🌱 Estado de Actividad
+                    </div>
+                    <p class="text-xs text-stone-500">Disponible para talleres puntuales, vivencias o reemplazos (sin grupo regular semanal activo actualmente).</p>
+                  </div>
+                `}
 
                 ${item.publicos ? `
                   <div>
