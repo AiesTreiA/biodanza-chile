@@ -49,6 +49,14 @@
             <p class="text-amber-100 text-sm md:text-base mt-2 max-w-2xl font-light">
               Directorio vivo y mapa interactivo de facilitadores, didactas y practicantes. Conectando grupos regulares, talleres y territorios en todo Chile.
             </p>
+            <div class="mt-4 flex flex-wrap items-center gap-3">
+              <a href="https://chat.whatsapp.com/BPn6ZmBdMIVJH5CBxcWiFQ" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs md:text-sm px-4 py-2.5 rounded-xl shadow-md transition-all hover:scale-[1.02] border border-emerald-400">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.983.54 1.777.813 2.796.813 3.183 0 5.769-2.587 5.77-5.766-.001-3.181-2.588-5.766-5.77-5.766zm9.969 5.766c0 5.514-4.485 10-10 10-1.748 0-3.388-.45-4.82-1.24l-7.18 1.882 1.916-6.993c-.878-1.488-1.376-3.218-1.376-5.061 0-5.514 4.486-10 10-10s10 4.486 10 10z"/></svg>
+                <span>Unirme al Grupo "Actividades Biodanza"</span>
+                <span class="bg-emerald-700/60 text-emerald-100 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">WhatsApp</span>
+              </a>
+              <span class="text-xs text-amber-100/90 hidden sm:inline">← Donde los facilitadores publican sus talleres y vivencias</span>
+            </div>
           </div>
         </div>
 
@@ -169,17 +177,23 @@
           Actividades vivenciales anunciadas por la comunidad en WhatsApp, organizadas por categoría y fechas.
         </p>
       </div>
-      <div class="flex items-center gap-2">
-        <span class="text-xs font-semibold text-stone-500 uppercase tracking-wider">Filtrar por:</span>
-        <select id="filter-taller-cat" onchange="filterTalleres()" class="px-3 py-2 rounded-xl border border-stone-300 text-xs font-medium bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-xs">
-          <option value="">Todas las Categorías</option>
-          <option value="Retiro">Retiros & Naturaleza</option>
-          <option value="Numinoso">Inconsciente Numinoso</option>
-          <option value="Minotauro">Proyecto Minotauro</option>
-          <option value="Mar">Biodanza en el Mar</option>
-          <option value="Formación">Formación & Didáctica</option>
-          <option value="Vivencial">Talleres Vivenciales</option>
-        </select>
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="https://chat.whatsapp.com/BPn6ZmBdMIVJH5CBxcWiFQ" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition-all shadow-xs">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.983.54 1.777.813 2.796.813 3.183 0 5.769-2.587 5.77-5.766-.001-3.181-2.588-5.766-5.77-5.766zm9.969 5.766c0 5.514-4.485 10-10 10-1.748 0-3.388-.45-4.82-1.24l-7.18 1.882 1.916-6.993c-.878-1.488-1.376-3.218-1.376-5.061 0-5.514 4.486-10 10-10s10 4.486 10 10z"/></svg>
+          <span>Grupo Actividades Biodanza</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-semibold text-stone-500 uppercase tracking-wider">Filtrar:</span>
+          <select id="filter-taller-cat" onchange="filterTalleres()" class="px-3 py-2 rounded-xl border border-stone-300 text-xs font-medium bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-xs">
+            <option value="">Todas las Categorías</option>
+            <option value="Retiro">Retiros & Naturaleza</option>
+            <option value="Numinoso">Inconsciente Numinoso</option>
+            <option value="Minotauro">Proyecto Minotauro</option>
+            <option value="Mar">Biodanza en el Mar</option>
+            <option value="Formación">Formación & Didáctica</option>
+            <option value="Vivencial">Talleres Vivenciales</option>
+          </select>
+        </div>
       </div>
     </div>
 
