@@ -222,5 +222,26 @@
     "telefonoPublico": "+56990861386",
     "updatedAt": "2026-11-07T00:42:45.457Z",
     "foto": "./assets/amanda_sepulveda.jpg"
+  },
+  "marisol_san_martin": {
+    "jid": "marisol_san_martin@biodanza.org",
+    "nombre": "Marisol San Martín",
+    "formacion": "Profesora Didacta - Coordinadora Escuela de Biodanza Amar (Reñaca)",
+    "grupoRegular": "Módulos de formación de facilitadores y coordinación académica en Escuela Amar, Reñaca / Viña del Mar.",
+    "lugar": "Sede Escuela de Biodanza Amar",
+    "direccion": "Reñaca, Viña del Mar, Región de Valparaíso",
+    "comuna": "Reñaca (Viña del Mar)",
+    "ciudad": "Viña del Mar",
+    "region": "Región de Valparaíso",
+    "dias_horarios": "Ciclos formativos de fin de semana y coordinación",
+    "lat": -32.9734,
+    "lng": -71.5368,
+    "publicos": "Adultos, Formación de Facilitadores, Supervisión",
+    "extensiones": "Biodanza Acuática, Biodanza en la Naturaleza, Afectividad",
+    "estado": "completado",
+    "telefonoPublico": "+56997047721",
+    "createdAt": "2026-11-06T23:15:00.000Z",
+    "updatedAt": "2026-11-06T23:15:00.000Z",
+    "foto": "./assets/marisol_san_martin.jpg"
   }
 }
