@@ -16,7 +16,8 @@
     "extensiones": "Proyecto Minotauro, Biodanza en Organizaciones, Árbol de los Deseos, Identidad y Cuatro Elementos",
     "estado": "completado",
     "createdAt": "2026-11-06T21:30:00.000Z",
-    "updatedAt": "2026-11-06T21:36:00.000Z"
+    "updatedAt": "2026-11-06T21:36:00.000Z",
+    "foto": "./assets/pedro_labbe.jpg"
   },
   "fernanda_morixe": {
     "jid": "fernanda_morixe@biodanza.org",
