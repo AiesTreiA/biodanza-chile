@@ -96,7 +96,8 @@
     "extensiones": "Identidad y Cuatro Elementos, Biodanza Acuática, Minotauro",
     "estado": "completado",
     "createdAt": "2026-11-06T21:40:00.000Z",
-    "updatedAt": "2026-11-06T21:40:00.000Z"
+    "updatedAt": "2026-11-06T21:40:00.000Z",
+    "foto": "./assets/gittith_sanchez.jpg"
   },
   "cecilia_vera_sergio_rivera": {
     "jid": "cecilia_sergio@biodanza.org",
