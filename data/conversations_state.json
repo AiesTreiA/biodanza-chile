@@ -1,1 +1,34 @@
-{}
+{
+  "220907532509236": {
+    "jid": "220907532509236",
+    "startedAt": "2026-11-07T04:02:40.867Z",
+    "step": "ASK_GRUPO_REGULAR",
+    "nombre": "Hugo",
+    "esBiodanza": true,
+    "lastInteraction": "2026-11-07T12:25:11.200Z"
+  },
+  "223669196464233": {
+    "jid": "223669196464233",
+    "startedAt": "2026-11-07T18:03:20.915Z",
+    "step": "COMPLETED",
+    "nombre": "Cata Ortiz",
+    "esBiodanza": true,
+    "lastInteraction": "2026-11-07T18:29:01.898Z"
+  },
+  "211445669212166": {
+    "jid": "211445669212166",
+    "startedAt": "2026-11-07T18:10:27.806Z",
+    "step": "ASK_PUBLICOS",
+    "nombre": "Kamila",
+    "esBiodanza": true,
+    "lastInteraction": "2026-11-07T18:39:24.383Z"
+  },
+  "228831646474279@s.whatsapp.net": {
+    "jid": "228831646474279@s.whatsapp.net",
+    "startedAt": "2026-11-07T18:40:25.059Z",
+    "step": "INVITED",
+    "nombre": "Marcia Paredes",
+    "esBiodanza": true,
+    "lastInteraction": "2026-11-07T18:40:25.059Z"
+  }
+}
