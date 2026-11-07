@@ -116,7 +116,8 @@
     "extensiones": "Biodanza y Naturaleza, Árbol de los Deseos",
     "estado": "completado",
     "createdAt": "2026-11-06T21:40:00.000Z",
-    "updatedAt": "2026-11-06T21:40:00.000Z"
+    "updatedAt": "2026-11-06T21:40:00.000Z",
+    "foto": "./assets/cecilia_vera.jpg"
   },
   "loreto_varela": {
     "jid": "loreto_varela@biodanza.org",
