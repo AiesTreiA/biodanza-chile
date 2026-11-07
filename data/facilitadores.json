@@ -15,6 +15,7 @@
     "publicos": "Adultos, Formación de Facilitadores y Supervisión",
     "extensiones": "Inconsciente Numinoso, Proyecto Minotauro, Biodanza en Organizaciones, Árbol de los Deseos, Identidad y Cuatro Elementos",
     "estado": "completado",
+    "telefonoPublico": "+56955300603",
     "createdAt": "2026-11-06T21:30:00.000Z",
     "updatedAt": "2026-11-06T21:36:00.000Z",
     "foto": "./assets/pedro_labbe.jpg"
@@ -35,6 +36,7 @@
     "publicos": "Adultos, Formación Profesional, Coaching y Organizaciones",
     "extensiones": "Biodanza en Organizaciones, Biodanza Acuática, Coaching Biocéntrico",
     "estado": "completado",
+    "telefonoPublico": "+56981302390",
     "createdAt": "2026-11-06T21:40:00.000Z",
     "updatedAt": "2026-11-06T21:40:00.000Z",
     "foto": "./assets/fernanda_morixe.jpg"
@@ -55,6 +57,7 @@
     "publicos": "Adultos, Formación de Facilitadores, Retiros de Fin de Semana",
     "extensiones": "Biodanza y Poesía, Identidad y Cuatro Elementos, Biodanza Acuática",
     "estado": "completado",
+    "telefonoPublico": "+56998956045",
     "createdAt": "2026-11-06T21:40:00.000Z",
     "updatedAt": "2026-11-06T21:40:00.000Z",
     "foto": "./assets/berta_garcia.jpg"
@@ -216,6 +219,7 @@
     "publicos": "Adultos, Familias, Vitalidad, Expresión y Trascendencia",
     "extensiones": "Biodanza en la Naturaleza, Creatividad y Afectividad, Biodanza Acuática",
     "estado": "completado",
+    "telefonoPublico": "+56990861386",
     "updatedAt": "2026-11-07T00:42:45.457Z",
     "foto": "./assets/amanda_sepulveda.jpg"
   }

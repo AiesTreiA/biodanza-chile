@@ -506,12 +506,17 @@
                   </div>
                 ` : ''}
 
-                ${item.contactoRedes || item.telefonoPublico ? `
-                  <div class="pt-2 border-t border-stone-100/80">
-                    <div class="font-semibold text-stone-500 text-xs uppercase tracking-wider mb-1.5">🌐 Contacto & Redes</div>
+                ${item.contactoRedes || item.telefonoPublico || item.jid ? `
+                  <div class="pt-3 border-t border-stone-100">
+                    <div class="font-semibold text-stone-500 text-xs uppercase tracking-wider mb-2">🌐 Contacto & Redes</div>
                     <div class="flex flex-wrap items-center gap-2 text-xs">
                       ${item.contactoRedes ? `<span class="bg-rose-50 text-rose-700 border border-rose-100 px-2.5 py-1 rounded-lg font-medium">${item.contactoRedes}</span>` : ''}
-                      ${item.telefonoPublico ? `<a href="https://wa.me/${item.telefonoPublico.replace(/[^0-9]/g, '')}" target="_blank" class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-lg font-semibold hover:bg-emerald-100 transition-colors">💬 WhatsApp: ${item.telefonoPublico}</a>` : ''}
+                      ${(item.telefonoPublico || (item.jid && item.jid.includes('@s.whatsapp.net') ? item.jid.split('@')[0] : null)) ? `
+                        <a href="https://wa.me/${(item.telefonoPublico || item.jid.split('@')[0]).replace(/[^0-9]/g, '')}?text=Hola%20${encodeURIComponent(item.nombre || '')},%20te%20contacto%20desde%20Plataforma%20Biodanza." target="_blank" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold transition-all shadow-xs hover:scale-[1.02]">
+                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.983.54 1.777.813 2.796.813 3.183 0 5.769-2.587 5.77-5.766-.001-3.181-2.588-5.766-5.77-5.766zm9.969 5.766c0 5.514-4.485 10-10 10-1.748 0-3.388-.45-4.82-1.24l-7.18 1.882 1.916-6.993c-.878-1.488-1.376-3.218-1.376-5.061 0-5.514 4.486-10 10-10s10 4.486 10 10z"/></svg>
+                          <span>wa.me/${(item.telefonoPublico || item.jid.split('@')[0]).replace(/[^0-9]/g, '')}</span>
+                        </a>
+                      ` : ''}
                     </div>
                   </div>
                 ` : ''}
@@ -519,13 +524,20 @@
             </div>
           </div>
 
-          <div class="px-6 py-4 bg-stone-50/60 border-t border-stone-100 flex items-center justify-between text-xs text-stone-400">
+          <div class="px-6 py-4 bg-stone-50/80 border-t border-stone-100 flex items-center justify-between text-xs">
             <span class="font-medium text-stone-600 flex items-center gap-1">
               📍 ${item.comuna || 'Chile'}
             </span>
-            <button onclick="zoomToFacilitator(${item.lat}, ${item.lng})" class="inline-flex items-center gap-1.5 text-amber-800 bg-amber-100/80 hover:bg-amber-200 px-3.5 py-1.5 rounded-lg font-semibold transition-colors shadow-xs">
-              Ver en mapa →
-            </button>
+            <div class="flex items-center gap-2">
+              ${(item.telefonoPublico || (item.jid && item.jid.includes('@s.whatsapp.net') ? item.jid.split('@')[0] : null)) ? `
+                <a href="https://wa.me/${(item.telefonoPublico || item.jid.split('@')[0]).replace(/[^0-9]/g, '')}?text=Hola%20${encodeURIComponent(item.nombre || '')},%20te%20contacto%20desde%20Plataforma%20Biodanza." target="_blank" class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 px-2.5 py-1.5 rounded-lg font-bold transition-colors">
+                  <span>💬 Hablar</span>
+                </a>
+              ` : ''}
+              <button onclick="zoomToFacilitator(${item.lat}, ${item.lng})" class="inline-flex items-center gap-1 text-amber-800 bg-amber-100/80 hover:bg-amber-200 px-3 py-1.5 rounded-lg font-semibold transition-colors shadow-xs">
+                Mapa →
+              </button>
+            </div>
           </div>
         `;
         container.appendChild(card);
