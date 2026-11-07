@@ -174,7 +174,8 @@
     "extensiones": "Biodanza y Naturaleza, Biodanza Acuática, Afectividad",
     "estado": "completado",
     "createdAt": "2026-11-06T21:40:00.000Z",
-    "updatedAt": "2026-11-06T21:40:00.000Z"
+    "updatedAt": "2026-11-06T21:40:00.000Z",
+    "foto": "./assets/claudia_moena.jpg"
   },
   "luselva_baquedano@biodanza.org": {
     "jid": "luselva_baquedano@biodanza.org",
