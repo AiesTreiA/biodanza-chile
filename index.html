@@ -186,7 +186,7 @@
       initMap();
 
       try {
-        const resFac = await fetch('./data/facilitadores.json');
+        const resFac = await fetch('./data/facilitadores.json?t=' + Date.now());
         const dataFac = await resFac.json();
         allFacilitadores = Object.values(dataFac);
         document.getElementById('total-facilitadores').textContent = allFacilitadores.length;
@@ -197,7 +197,7 @@
       }
 
       try {
-        const resRed = await fetch('./data/actividades_red.json');
+        const resRed = await fetch('./data/actividades_red.json?t=' + Date.now());
         allActividadesRed = await resRed.json();
         document.getElementById('badge-red').textContent = allActividadesRed.length;
         renderActividadesRed(allActividadesRed);
