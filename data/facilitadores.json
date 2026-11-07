@@ -76,7 +76,8 @@
     "extensiones": "Biodanza Clínica, Proyecto Minotauro, Biointegración",
     "estado": "completado",
     "createdAt": "2026-11-06T21:40:00.000Z",
-    "updatedAt": "2026-11-06T21:40:00.000Z"
+    "updatedAt": "2026-11-06T21:40:00.000Z",
+    "foto": "./assets/ricardo_vicens.jpg"
   },
   "gittith_sanchez": {
     "jid": "gittith_sanchez@biodanza.org",
