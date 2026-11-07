@@ -289,9 +289,9 @@
         
         // Portada superior: Imagen real con overlay sutil o avatar ilustrado de fondo completo
         const coverHtml = item.foto
-          ? `<div class="relative w-full h-56 bg-stone-100 overflow-hidden group">
-               <img src="${item.foto}?v=2" alt="${item.nombre}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-               <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"></div>
+          ? `<div class="relative w-full h-64 bg-stone-100 overflow-hidden group">
+               <img src="${item.foto}?v=3" alt="${item.nombre}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                <div class="absolute bottom-3 left-4 right-4 text-white">
                  <span class="inline-block bg-rose-600/90 backdrop-blur-sm text-[11px] font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-1">
                    ${item.formacion ? item.formacion.split('-')[0].trim() : 'Facilitador'}
@@ -299,7 +299,7 @@
                  <h3 class="font-bold text-xl text-white leading-tight drop-shadow-sm">${item.nombre || 'Facilitador'}</h3>
                </div>
              </div>`
-          : `<div class="relative w-full h-52 bg-gradient-to-tr from-amber-600 via-rose-600 to-orange-500 flex flex-col justify-end p-4 text-white overflow-hidden">
+          : `<div class="relative w-full h-64 bg-gradient-to-tr from-amber-600 via-rose-600 to-orange-500 flex flex-col justify-end p-4 text-white overflow-hidden">
                <div class="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
                <div class="absolute right-4 top-4 w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center font-bold text-xl text-white border border-white/20">
                  ${(item.nombre || 'B')[0].toUpperCase()}
