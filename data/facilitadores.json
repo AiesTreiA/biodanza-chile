@@ -55,7 +55,8 @@
     "extensiones": "Biodanza y Poesía, Identidad y Cuatro Elementos, Biodanza Acuática",
     "estado": "completado",
     "createdAt": "2026-11-06T21:40:00.000Z",
-    "updatedAt": "2026-11-06T21:40:00.000Z"
+    "updatedAt": "2026-11-06T21:40:00.000Z",
+    "foto": "./assets/berta_garcia.jpg"
   },
   "ricardo_vicens": {
     "jid": "ricardo_vicens@biodanza.org",
