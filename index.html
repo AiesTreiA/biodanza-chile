@@ -6,34 +6,50 @@
   <title>Plataforma & Observatorio de Biodanza</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS & JS para el Mapa Interactivo -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
   <style>
     body { font-family: 'Outfit', sans-serif; }
+    #map { height: 420px; z-index: 10; border-radius: 1rem; }
+    .leaflet-popup-content-wrapper {
+      border-radius: 1rem;
+      padding: 0.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body class="bg-amber-50/40 text-stone-800 min-h-screen">
   <!-- Header -->
   <header class="bg-gradient-to-r from-amber-600 via-rose-600 to-orange-500 text-white shadow-lg">
-    <div class="max-w-6xl mx-auto px-6 py-10">
+    <div class="max-w-7xl mx-auto px-6 py-10">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <span class="inline-block bg-white/20 backdrop-blur-sm text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
-            Mapeo & Red Colaborativa
-          </span>
-          <h1 class="text-3xl md:text-5xl font-bold tracking-tight">Plataforma Biodanza</h1>
-          <p class="text-amber-100 text-base md:text-lg mt-2 max-w-2xl font-light">
-            Directorio vivo de facilitadores, didactas y practicantes. Conectando grupos regulares, talleres y territorios en todo Chile.
-          </p>
+        <div class="flex items-center gap-6">
+          <div class="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-white/15 backdrop-blur-md p-2 flex items-center justify-center border border-white/25 shadow-inner shrink-0">
+            <img src="./assets/logo_biodanza_white.png" alt="Logo Biodanza Sistema Rolando Toro" class="w-full h-full object-contain filter drop-shadow">
+          </div>
+          <div>
+            <span class="inline-block bg-white/20 backdrop-blur-sm text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+              Mapeo & Red Colaborativa
+            </span>
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight">Plataforma Biodanza</h1>
+            <p class="text-amber-100 text-sm md:text-base mt-2 max-w-2xl font-light">
+              Directorio vivo y mapa interactivo de facilitadores, didactas y practicantes. Conectando grupos regulares, talleres y territorios en todo Chile.
+            </p>
+          </div>
         </div>
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-center md:min-w-[180px]">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-center md:min-w-[180px] shrink-0 self-start md:self-auto">
           <span class="text-3xl font-extrabold text-white" id="total-facilitadores">0</span>
-          <span class="block text-xs text-amber-100 uppercase tracking-wider mt-1">Facilitadores Biodanza</span>
+          <span class="block text-xs text-amber-100 uppercase tracking-wider mt-1">Facilitadores Registrados</span>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Pestañas Principales: Biodanza vs Red Afín -->
-  <div class="max-w-6xl mx-auto px-6 pt-6">
+  <div class="max-w-7xl mx-auto px-6 pt-6">
     <div class="flex border-b border-stone-200 gap-4">
       <button id="tab-biodanza" onclick="switchTab('biodanza')" class="py-3 px-6 font-bold text-amber-700 border-b-2 border-amber-600 flex items-center gap-2 text-base transition-colors">
         💃 Facilitadores & Grupos Biodanza
@@ -46,20 +62,33 @@
     </div>
   </div>
 
-  <!-- Vista 1: Facilitadores de Biodanza (Principal) -->
-  <main id="view-biodanza" class="max-w-6xl mx-auto px-6 py-6">
-    <div class="bg-white rounded-2xl shadow-sm border border-stone-200/80 p-5 mb-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <!-- Vista 1: Facilitadores de Biodanza (Principal con Mapa) -->
+  <main id="view-biodanza" class="max-w-7xl mx-auto px-6 py-6">
+    
+    <!-- Filtros de Búsqueda Avanzados -->
+    <div class="bg-white rounded-2xl shadow-sm border border-stone-200/80 p-5 mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div>
-          <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Buscar Facilitador</label>
-          <input type="text" id="search-input" oninput="filterBiodanza()" placeholder="Nombre, comuna, escuela..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+          <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Buscar Facilitador / Comuna</label>
+          <input type="text" id="search-input" oninput="filterBiodanza()" placeholder="Pedro, La Reina, Santiago..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Rol / Formación</label>
+          <select id="filter-rol" onchange="filterBiodanza()" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
+            <option value="">Todos los roles</option>
+            <option value="didacta">Didacta</option>
+            <option value="titulado">Facilitador Titulado</option>
+            <option value="estudiante">Estudiante 3er año / Supervisión</option>
+          </select>
         </div>
         <div>
           <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Público / Ámbito</label>
           <select id="filter-publico" onchange="filterBiodanza()" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
             <option value="">Todos los públicos</option>
-            <option value="adulto">Adultos / Adulto Mayor</option>
+            <option value="adulto">Adultos</option>
+            <option value="formación">Formación & Supervisión</option>
             <option value="niño">Niños / Familias</option>
+            <option value="mayor">Adulto Mayor</option>
             <option value="organizacion">Organizaciones</option>
           </select>
         </div>
@@ -67,22 +96,37 @@
           <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Extensión Oficial</label>
           <select id="filter-extension" onchange="filterBiodanza()" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
             <option value="">Todas las extensiones</option>
-            <option value="acuática">Biodanza Acuática</option>
+            <option value="minotauro">Proyecto Minotauro</option>
+            <option value="organizaciones">Biodanza en Organizaciones</option>
+            <option value="árbol">Árbol de los Deseos</option>
             <option value="elementos">Cuatro Elementos</option>
+            <option value="acuática">Biodanza Acuática</option>
             <option value="voz">Voz y Percusión</option>
-            <option value="minotauro">Minotauro</option>
           </select>
         </div>
       </div>
     </div>
 
+    <!-- Contenedor del Mapa Interactivo -->
+    <div class="bg-white rounded-2xl shadow-sm border border-stone-200/80 p-4 mb-8">
+      <div class="flex items-center justify-between mb-3 px-2">
+        <h2 class="text-base font-bold text-stone-800 flex items-center gap-2">
+          📍 Mapa de Grupos Regulares en Chile
+          <span class="text-xs font-normal text-stone-500">(Haz zoom y clic en los puntos para ver el domo/sala y horario)</span>
+        </h2>
+        <span class="text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-1 rounded-lg" id="map-counter">1 grupo en mapa</span>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <!-- Lista de Fichas de Facilitadores -->
     <div id="facilitadores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Cards de Biodanza -->
+      <!-- Cards generadas dinámicamente -->
     </div>
   </main>
 
   <!-- Vista 2: Actividades de la Red Afín (Secundaria) -->
-  <main id="view-red" class="max-w-6xl mx-auto px-6 py-6 hidden">
+  <main id="view-red" class="max-w-7xl mx-auto px-6 py-6 hidden">
     <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-4 mb-6 text-sm text-stone-700 flex items-center justify-between">
       <span>🌿 <strong>Cartelera de la Red Afín:</strong> Talleres, terapias y propuestas de bienestar compartidas por la comunidad en <em>Biodanza +</em>.</span>
     </div>
@@ -94,8 +138,24 @@
   <script>
     let allFacilitadores = [];
     let allActividadesRed = [];
+    let map = null;
+    let markersLayer = null;
+
+    // Inicializar Mapa centrado en Chile
+    function initMap() {
+      // Coordenadas Santiago: -33.4489, -70.6693
+      map = L.map('map').setView([-33.4475, -70.5280], 12);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+
+      markersLayer = L.layerGroup().addTo(map);
+    }
 
     async function loadData() {
+      initMap();
+
       try {
         const resFac = await fetch('./data/facilitadores.json');
         const dataFac = await resFac.json();
@@ -128,6 +188,7 @@
         btnRed.className = "py-3 px-6 font-semibold text-stone-500 hover:text-stone-800 border-b-2 border-transparent flex items-center gap-2 text-base transition-colors";
         viewBio.classList.remove('hidden');
         viewRed.classList.add('hidden');
+        setTimeout(() => map.invalidateSize(), 200);
       } else {
         btnRed.className = "py-3 px-6 font-bold text-amber-700 border-b-2 border-amber-600 flex items-center gap-2 text-base transition-colors";
         btnBio.className = "py-3 px-6 font-semibold text-stone-500 hover:text-stone-800 border-b-2 border-transparent flex items-center gap-2 text-base transition-colors";
@@ -138,18 +199,50 @@
 
     function filterBiodanza() {
       const query = (document.getElementById('search-input').value || '').toLowerCase();
+      const rol = (document.getElementById('filter-rol').value || '').toLowerCase();
       const publico = (document.getElementById('filter-publico').value || '').toLowerCase();
       const ext = (document.getElementById('filter-extension').value || '').toLowerCase();
 
       const filtered = allFacilitadores.filter(f => {
-        const textBlob = `${f.nombre} ${f.formacion} ${f.grupoRegular} ${f.publicos} ${f.extensiones}`.toLowerCase();
+        const textBlob = `${f.nombre} ${f.formacion} ${f.grupoRegular} ${f.publicos} ${f.extensiones} ${f.comuna || ''} ${f.ciudad || ''}`.toLowerCase();
         const matchesQuery = !query || textBlob.includes(query);
+        const matchesRol = !rol || (f.formacion && f.formacion.toLowerCase().includes(rol));
         const matchesPublico = !publico || (f.publicos && f.publicos.toLowerCase().includes(publico));
         const matchesExt = !ext || (f.extensiones && f.extensiones.toLowerCase().includes(ext));
-        return matchesQuery && matchesPublico && matchesExt;
+        return matchesQuery && matchesRol && matchesPublico && matchesExt;
       });
 
       renderFacilitadores(filtered);
+      updateMapMarkers(filtered);
+    }
+
+    function updateMapMarkers(list) {
+      if (!markersLayer) return;
+      markersLayer.clearLayers();
+
+      const markersWithCoords = list.filter(f => f.lat && f.lng);
+      document.getElementById('map-counter').textContent = `${markersWithCoords.length} grupo(s) en mapa`;
+
+      markersWithCoords.forEach(item => {
+        const marker = L.marker([item.lat, item.lng]).addTo(markersLayer);
+        const popupContent = `
+          <div class="text-stone-800 text-xs">
+            <h4 class="font-bold text-sm text-amber-900">${item.nombre}</h4>
+            <p class="text-rose-600 font-medium mb-1">${item.formacion}</p>
+            <p class="text-stone-600 mb-1"><strong>Lugar:</strong> ${item.lugar || item.direccion || item.comuna}</p>
+            <p class="text-stone-600 mb-1"><strong>Horario:</strong> ${item.dias_horarios || 'Consultar'}</p>
+            ${item.extensiones ? `<p class="text-stone-500 mt-1 border-t pt-1"><strong>Extensiones:</strong> ${item.extensiones}</p>` : ''}
+          </div>
+        `;
+        marker.bindPopup(popupContent);
+      });
+
+      if (markersWithCoords.length === 1) {
+        map.setView([markersWithCoords[0].lat, markersWithCoords[0].lng], 13);
+      } else if (markersWithCoords.length > 1) {
+        const group = new L.featureGroup(markersWithCoords.map(m => L.marker([m.lat, m.lng])));
+        map.fitBounds(group.getBounds().pad(0.2));
+      }
     }
 
     function renderFacilitadores(list) {
@@ -157,43 +250,51 @@
       container.innerHTML = '';
 
       if (list.length === 0) {
-        container.innerHTML = `<div class="col-span-full text-center py-12 text-stone-400">No se encontraron facilitadores de Biodanza.</div>`;
+        container.innerHTML = `<div class="col-span-full text-center py-12 text-stone-400">No se encontraron facilitadores de Biodanza con esos criterios.</div>`;
         return;
       }
 
       list.forEach(item => {
         const card = document.createElement('div');
         card.className = "bg-white rounded-2xl shadow-sm border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-md transition-shadow";
+        
+        const avatarHtml = item.foto
+          ? `<img src="${item.foto}" alt="${item.nombre}" class="w-14 h-14 rounded-full object-cover shadow-sm border-2 border-amber-500/30 shrink-0">`
+          : `<div class="w-14 h-14 rounded-full bg-gradient-to-tr from-amber-500 to-rose-500 text-white flex items-center justify-center font-bold text-lg shadow-sm shrink-0">
+               ${(item.nombre || 'B')[0].toUpperCase()}
+             </div>`;
+
         card.innerHTML = `
           <div>
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">
-                ${(item.nombre || 'B')[0].toUpperCase()}
-              </div>
+              ${avatarHtml}
               <div>
                 <h3 class="font-bold text-lg text-stone-800 leading-tight">${item.nombre || 'Facilitador'}</h3>
-                <span class="inline-block text-xs font-medium text-rose-600 mt-0.5">${item.formacion || 'Facilitador Titulado'}</span>
+                <span class="inline-block text-xs font-semibold text-rose-600 mt-0.5">${item.formacion || 'Facilitador Titulado'}</span>
               </div>
             </div>
 
             <div class="space-y-3 text-sm text-stone-600 mb-6">
               ${item.grupoRegular ? `
-                <div class="bg-amber-50/60 rounded-xl p-3 border border-amber-100">
-                  <div class="font-semibold text-amber-900 text-xs uppercase tracking-wider mb-1">📍 Grupo Regular</div>
-                  <p class="text-xs leading-relaxed text-stone-700">${item.grupoRegular}</p>
+                <div class="bg-amber-50/70 rounded-xl p-3 border border-amber-100">
+                  <div class="font-semibold text-amber-900 text-xs uppercase tracking-wider mb-1 flex items-center gap-1">
+                    📍 Grupo Regular Semanal
+                  </div>
+                  <p class="text-xs leading-relaxed text-stone-700 font-medium">${item.grupoRegular}</p>
+                  ${item.direccion ? `<p class="text-[11px] text-stone-500 mt-1">Dirección: ${item.direccion}</p>` : ''}
                 </div>
               ` : ''}
 
               ${item.publicos ? `
                 <div>
-                  <div class="font-semibold text-stone-500 text-xs uppercase tracking-wider mb-1">👥 Públicos</div>
+                  <div class="font-semibold text-stone-500 text-xs uppercase tracking-wider mb-1">👥 Públicos & Áreas</div>
                   <p class="text-xs text-stone-700">${item.publicos}</p>
                 </div>
               ` : ''}
 
               ${item.extensiones ? `
                 <div>
-                  <div class="font-semibold text-stone-500 text-xs uppercase tracking-wider mb-1">✨ Extensiones</div>
+                  <div class="font-semibold text-stone-500 text-xs uppercase tracking-wider mb-1">✨ Extensiones Oficiales</div>
                   <p class="text-xs text-stone-700">${item.extensiones}</p>
                 </div>
               ` : ''}
@@ -201,14 +302,21 @@
           </div>
 
           <div class="pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-400">
-            <span>Directorio Central Biodanza</span>
-            <span class="inline-flex items-center gap-1 text-emerald-600 font-medium">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Activo
-            </span>
+            <span class="font-medium text-stone-500">${item.comuna || 'Santiago'}</span>
+            <button onclick="zoomToFacilitator(${item.lat}, ${item.lng})" class="inline-flex items-center gap-1 text-amber-700 bg-amber-50 hover:bg-amber-100 px-3 py-1 rounded-lg font-semibold transition-colors">
+              📍 Ver en mapa
+            </button>
           </div>
         `;
         container.appendChild(card);
       });
+    }
+
+    function zoomToFacilitator(lat, lng) {
+      if (lat && lng && map) {
+        map.setView([lat, lng], 15);
+        window.scrollTo({ top: document.getElementById('map').offsetTop - 80, behavior: 'smooth' });
+      }
     }
 
     function renderActividadesRed(list) {
