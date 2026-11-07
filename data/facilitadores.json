@@ -136,7 +136,8 @@
     "extensiones": "Biodanza Acuática, Cuatro Elementos",
     "estado": "completado",
     "createdAt": "2026-11-06T21:40:00.000Z",
-    "updatedAt": "2026-11-06T21:40:00.000Z"
+    "updatedAt": "2026-11-06T21:40:00.000Z",
+    "foto": "./assets/loreto_varela.jpg"
   },
   "juan_francisco_gavilan": {
     "jid": "juan_francisco_gavilan@biodanza.org",
