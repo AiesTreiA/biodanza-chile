@@ -18,10 +18,10 @@
   "211445669212166": {
     "jid": "211445669212166",
     "startedAt": "2026-11-07T18:10:27.806Z",
-    "step": "ASK_PUBLICOS",
+    "step": "COMPLETED",
     "nombre": "Kamila",
     "esBiodanza": true,
-    "lastInteraction": "2026-11-07T18:39:24.383Z"
+    "lastInteraction": "2026-11-07T19:57:01.635Z"
   },
   "228831646474279@s.whatsapp.net": {
     "jid": "228831646474279@s.whatsapp.net",
@@ -30,5 +30,37 @@
     "nombre": "Marcia Paredes",
     "esBiodanza": true,
     "lastInteraction": "2026-11-07T18:40:25.059Z"
+  },
+  "277815865929734@s.whatsapp.net": {
+    "jid": "277815865929734@s.whatsapp.net",
+    "startedAt": "2026-11-08T14:06:25.105Z",
+    "step": "INVITED",
+    "nombre": "Claudia🌹",
+    "esBiodanza": true,
+    "lastInteraction": "2026-11-08T14:06:25.105Z"
+  },
+  "178786653962370": {
+    "jid": "178786653962370",
+    "startedAt": "2026-11-08T18:31:11.989Z",
+    "step": "ASK_ROL_ESCUELA",
+    "nombre": "Eylin Novoa",
+    "esBiodanza": true,
+    "lastInteraction": "2026-11-08T18:31:11.989Z"
+  },
+  "65713016467638@s.whatsapp.net": {
+    "jid": "65713016467638@s.whatsapp.net",
+    "startedAt": "2026-11-08T20:57:44.226Z",
+    "step": "INVITED",
+    "nombre": "feiticeiro _ andrés",
+    "esBiodanza": true,
+    "lastInteraction": "2026-11-08T20:57:44.226Z"
+  },
+  "178181516562526": {
+    "jid": "178181516562526",
+    "startedAt": "2026-11-08T21:40:12.053Z",
+    "step": "ASK_REDES_CONTACTO",
+    "nombre": "Ricardo Pastene B.",
+    "esBiodanza": true,
+    "lastInteraction": "2026-11-08T21:55:03.920Z"
   }
 }
